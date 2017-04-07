@@ -1,0 +1,12 @@
+public function ver(){
+		$persona = array(
+			'numero_documento' => $this->input->get('id'),
+		);
+		$this->load->model('PersonaModel');
+		$data['persona'] = (new $this->PersonaModel($persona))->obtener_datos();
+		$data['estudios'] = $data['persona']->obtener_estudios();
+		$this->load->vars($data);
+		$this->load->view('header');
+		$this->load->view('persona/get');
+		$this->load->view('footer');
+	}
