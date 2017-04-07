@@ -1,0 +1,23 @@
+	public function store(){
+		$persona = array(
+			'tipo_documento' => $this->input->post('tipo_documento'),
+			'numero_documento' => $this->input->post('numero_documento'),
+			'nombre' => $this->input->post('nombre'),
+			'apellido' => $this->input->post('apellido'),
+			'sexo' => $this->input->post('sexo'),
+			'fecha_nacimiento' => $this->input->post('fecha_nacimiento'),
+			'direccion' => $this->input->post('direccion'),
+			'ciudad' => $this->input->post('ciudad'),
+			'nacionalidad' => $this->input->post('nacionalidad'),
+			'email' => $this->input->post('email'),
+			'telefono' => $this->input->post('telefono')
+		);
+		$this->load->model('PersonaModel');
+		$persona = new $this->PersonaModel($persona);
+		$errores = $persona->validar();
+		if($errores === TRUE){
+			$persona->registrar();
+		}else{
+			var_dump($errores);
+		}
+	}
